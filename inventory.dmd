@@ -1,0 +1,34 @@
+** END HEADER -- do not remove this line
+//
+// Generated on 16/11/2024
+//
+class inventoryDATAMODULE of BASECDATAMODULE from :DT_Custom2:base.cdm
+   with (this.DBASETUTORIAL21)
+      left = 19.0
+      top = 135.0
+      width = 115.0
+      height = 112.0
+   endwith
+
+   this.INVENTORY1 = new QUERY(this)
+   with (this.INVENTORY1)
+      left = 187.0
+      top = 29.0
+      width = 114.0
+      height = 116.0
+      database = form.dbasetutorial21
+      sql = 'Select * from "inventory"'
+      active = true
+   endwith
+
+   with (this.INVENTORY1.rowset)
+      with (fields["Supplier ID"])
+         lookupSQL = "select supplier.'supplier id', company from supplier order by company"
+      endwith
+      indexName = "DESCRIPTION"
+   endwith
+
+   this.rowset = this.inventory1.rowset
+
+endclass
+

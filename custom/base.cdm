@@ -1,0 +1,23 @@
+** END HEADER -- do not remove this line
+class baseCDATAMODULE of DATAMODULE custom
+   this.DBASETUTORIAL21 = new DATABASE(this)
+   with (this.DBASETUTORIAL21)
+      left = 19.0
+      top = 135.0
+      width = 115.0
+      height = 112.0
+      databaseName = "dBASETutorial2"
+      active = true
+   endwith
+
+
+   function calcField(cName,nLength)
+      local oField
+		oField = new field()
+		ofield.fieldname := cName
+		oField.length := nLength
+		this.rowset.fields.add(oField)
+      return
+
+endclass
+

@@ -1,0 +1,72 @@
+** END HEADER -- do not remove this line
+//
+// Generated on 16/11/2024
+//
+class customerDATAMODULE of BASECDATAMODULE from :DT_Custom2:base.cdm
+   with (this.DBASETUTORIAL21)
+      left = 19.0
+      top = 135.0
+      width = 115.0
+      height = 112.0
+   endwith
+
+   this.CUSTOMER1 = new QUERY(this)
+   with (this.CUSTOMER1)
+      onOpen = class::CUSTOMER1_ONOPEN
+      left = 427.0
+      top = 41.0
+      width = 114.0
+      height = 100.0
+      database = form.dbasetutorial21
+      sql = 'Select * from "customer"'
+      active = true
+   endwith
+
+   with (this.CUSTOMER1.rowset)
+      canSave = class::ROWSET_CANSAVE
+      with (fields["State ID"])
+         lookupSQL = "select * from state order by state"
+      endwith
+      with (fields["Country ID"])
+         lookupSQL = "select * from country order by country"
+      endwith
+      with (fields["Full Name"])
+         beforeGetValue = class::FULLNAME_BEFOREGETVALUE
+      endwith
+      indexName = "NAMES"
+   endwith
+
+   this.rowset = this.customer1.rowset
+
+   function CUSTOMER1_onOpen()
+      class::calcField("Full Name",30)
+      return
+
+   function FullName_beforeGetValue()
+      local a
+		a = trim( this.parent["first name"].value ) + " " ;
+			+this.parent["last name"].value
+		return a
+      
+
+   function rowset_canSave()
+      local cErrors, bRetVal
+		cErrors = ""     // String for errors
+		if empty( this.fields[ "Last name" ].value )
+			cErrors += "- LAST NAME cannot be blank" + chr(13)
+		endif
+		if empty( this.fields[ "postal" ].value )
+			cErrors += "- POSTAL CODE cannot be blank" + chr(13)
+		endif
+		if "" # cErrors
+			msgbox( "Can't save current entry because:" + chr(13) + ;
+				 cErrors, "Bad entry", 48 )
+			bRetVal = false
+		else
+			bRetVal = true
+		endif
+		return bRetVal
+      
+
+endclass
+

@@ -1,0 +1,37 @@
+** END HEADER -- do not remove this line
+//
+// Generated on 16/11/2024
+//
+class supplierDATAMODULE of BASECDATAMODULE from :DT_Custom2:base.cdm
+   with (this.DBASETUTORIAL21)
+      left = 19.0
+      top = 135.0
+      width = 115.0
+      height = 112.0
+   endwith
+
+   this.SUPPLIER1 = new QUERY(this)
+   with (this.SUPPLIER1)
+      left = 148.0
+      top = 24.0
+      width = 114.0
+      height = 116.0
+      database = form.dbasetutorial21
+      sql = 'Select * from "supplier"'
+      active = true
+   endwith
+
+   with (this.SUPPLIER1.rowset)
+      with (fields["State ID"])
+         lookupSQL = "select * from state"
+      endwith
+      with (fields["Country ID"])
+         lookupSQL = "select * from country"
+      endwith
+      indexName = "COMPANY"
+   endwith
+
+   this.rowset = this.supplier1.rowset
+
+endclass
+
