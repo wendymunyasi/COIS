@@ -1,0 +1,120 @@
+** END HEADER -- do not remove this line
+//
+// Generated on 17/11/2024
+//
+parameter bModal
+local f
+f = new CountryForm()
+if (bModal)
+   f.mdi = false // ensure not MDI
+   f.readModal()
+else
+   f.open()
+endif
+
+class CountryForm of DATAFORMCFORM from :DT_Custom2:DataForm.cfm
+   set procedure to :FormControls:seeker.cc additive
+   set procedure to :DT_Custom2:mycontrols2.cc additive
+   with (this)
+      height = 320.0
+      left = 410.0
+      top = 20.0
+      width = 549.0
+      text = "Countries"
+   endwith
+
+   this.DBASETUTORIAL21 = new DATABASE(this)
+   with (this.DBASETUTORIAL21)
+      left = 468.0
+      top = 100.0
+      width = 86.0
+      height = 37.0
+      databaseName = "dBASETutorial2"
+      active = true
+   endwith
+
+   this.COUNTRY1 = new QUERY(this)
+   with (this.COUNTRY1)
+      left = 478.0
+      top = 110.0
+      width = 52.0
+      height = 37.0
+      database = form.dbasetutorial21
+      sql = "select * from COUNTRY.DBF"
+      active = true
+   endwith
+
+   with (this.COUNTRY1.rowset)
+      indexName = "COUNTRY"
+   endwith
+
+   with (this.MYTITLETEXT1)
+      text = "COUNTRIES"
+   endwith
+
+   with (this.SEEKER1)
+      height = 39.0
+      left = 101.0
+      top = 7.0
+      width = 357.0
+   endwith
+
+   with (this.MYGRID1)
+      dataLink = form.country1.rowset
+      height = 209.0
+      left = 98.0
+      top = 63.0
+      width = 360.0
+   endwith
+
+   with (this.MYTOOLBAR1)
+      left = 37.0
+      top = 38.0
+   endwith
+
+   with (this.MYTOOLBAR1.PBSAVE)
+      left = 165.0
+      top = 4.0
+   endwith
+
+   this.COUNTRYIDTEXTLABEL = new MYTEXTLABEL(this)
+   with (this.COUNTRYIDTEXTLABEL)
+      height = 22.0
+      left = 160.0
+      top = 101.0
+      width = 84.0
+      text = "Country ID:"
+   endwith
+
+   this.MYENTRYFIELD1 = new MYENTRYFIELD(this)
+   with (this.MYENTRYFIELD1)
+      dataLink = form.country1.rowset.fields["country id"]
+      height = 22.0
+      left = 252.0
+      top = 99.0
+      width = 51.0
+      picture = "!!"
+   endwith
+
+   this.COUNTRYTEXTLABEL = new MYTEXTLABEL(this)
+   with (this.COUNTRYTEXTLABEL)
+      height = 22.0
+      left = 160.0
+      top = 139.0
+      width = 84.0
+      text = "Country:"
+   endwith
+
+   this.MYENTRYFIELD2 = new MYENTRYFIELD(this)
+   with (this.MYENTRYFIELD2)
+      dataLink = form.country1.rowset.fields["country"]
+      height = 22.0
+      left = 252.0
+      top = 137.0
+      width = 153.0
+   endwith
+
+   this.rowset = this.country1.rowset
+
+endclass
+

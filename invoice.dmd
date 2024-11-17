@@ -1,8 +1,8 @@
 ** END HEADER -- do not remove this line
 //
-// Generated on 16/11/2024
+// Generated on 17/11/2024
 //
-class supplierDATAMODULE of BASECDATAMODULE from :DT_Custom2:base.cdm
+class InvoiceDATAMODULE of BASECDATAMODULE from :DT_Custom2:base.cdm
    with (this.DBASETUTORIAL21)
       left = 19.0
       top = 135.0
@@ -28,7 +28,7 @@ class supplierDATAMODULE of BASECDATAMODULE from :DT_Custom2:base.cdm
 
    this.INVOICE1 = new QUERY(this)
    with (this.INVOICE1)
-      left = 378.0
+      left = 279.0
       top = 45.0
       width = 114.0
       height = 116.0
@@ -46,8 +46,8 @@ class supplierDATAMODULE of BASECDATAMODULE from :DT_Custom2:base.cdm
 
    this.LINEITEM1 = new QUERY(this)
    with (this.LINEITEM1)
-      left = 755.0
-      top = 36.0
+      left = 433.0
+      top = 45.0
       width = 114.0
       height = 116.0
       database = form.dbasetutorial21
@@ -59,7 +59,6 @@ class supplierDATAMODULE of BASECDATAMODULE from :DT_Custom2:base.cdm
       with (fields["Item ID"])
          lookupSQL = "select inventory.'item id', inventory.'description' from inventory"
       endwith
-      autoEdit = false
       indexName = "INVOICE ID"
       masterRowset = form.invoice1.rowset
       masterFields = "Invoice ID"

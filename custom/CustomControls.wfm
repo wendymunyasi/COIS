@@ -1,0 +1,391 @@
+** END HEADER -- do not remove this line
+//
+// Generated on 17/11/2024
+//
+parameter bModal
+local f
+f = new CustomControlsForm()
+if (bModal)
+   f.mdi = false // ensure not MDI
+   f.readModal()
+else
+   f.open()
+endif
+
+class CustomControlsForm of FORM
+   set procedure to :DT_Custom2:mycontrols2.cc additive
+   with (this)
+      metric = 6	// Pixels
+      height = 796.0
+      left = 109.0
+      top = 39.0
+      width = 902.0
+      text = ""
+   endwith
+
+   this.MYENTRYFIELD = new ENTRYFIELD(this)
+   with (this.MYENTRYFIELD)
+      onGotFocus = {||"this.keyboard( "}
+      height = 22.0
+      left = 98.0
+      top = 54.0
+      width = 101.0
+      colorHighLight = "WindowText/0x80ffff"
+      value = "MyEntryfield"
+      selectAll = false
+   endwith
+
+   this.MYTEXT = new TEXT(this)
+   with (this.MYTEXT)
+      height = 22.0
+      left = 100.0
+      top = 140.0
+      width = 84.0
+      text = "Text1"
+      borderStyle = 10	// Etched Out
+   endwith
+
+   this.MYTEXTLABEL = new TEXTLABEL(this)
+   with (this.MYTEXTLABEL)
+      height = 22.0
+      left = 100.0
+      top = 246.0
+      width = 84.0
+      transparent = true
+      text = "Textlabel1"
+      fontBold = true
+      alignHorizontal = 2	// Right
+   endwith
+
+   this.MYPUSHBUTTON = new PUSHBUTTON(this)
+   with (this.MYPUSHBUTTON)
+      height = 24.0
+      left = 98.0
+      top = 328.0
+      width = 107.0
+      text = "Button"
+   endwith
+
+   this.MYSPINBOX = new SPINBOX(this)
+   with (this.MYSPINBOX)
+      onGotFocus = {||"this.keyboard("}
+      height = 22.0
+      left = 117.0
+      top = 393.0
+      width = 56.0
+      colorHighLight = "WindowText/0x80ffff"
+      rangeMax = 100
+      rangeMin = 1
+      value = 1
+      selectAll = false
+   endwith
+
+   this.MYRADIOBUTTON = new RADIOBUTTON(this)
+   with (this.MYRADIOBUTTON)
+      transparent = true
+      height = 24.0
+      left = 84.0
+      top = 541.0
+      width = 110.0
+      text = "MyRadiobutton"
+   endwith
+
+   this.MYCOMBOBOX = new COMBOBOX(this)
+   with (this.MYCOMBOBOX)
+      onGotFocus = class::MYCOMBOBOX_ONGOTFOCUS
+      onChange = class::MYCOMBOBOX_ONCHANGE
+      height = 22.0
+      left = 96.0
+      top = 473.0
+      width = 84.0
+      colorHighLight = "WindowText/0x80ffff"
+      style = 2	// DropDownList
+      dropDownHeight = 132.0
+      autoDrop = true
+   endwith
+
+   this.MYCONTAINER = new CONTAINER(this)
+   with (this.MYCONTAINER)
+      transparent = true
+      left = 369.0
+      top = 41.0
+      width = 369.0
+      height = 173.0
+      borderStyle = 4	// Single
+   endwith
+
+   this.MYGRID = new GRID(this)
+   with (this.MYGRID)
+      bgColor = "white"
+      headingHeight = 22.0
+      cellHeight = 22.0
+      rowSelect = true
+      colorRowSelect = "WindowText/0x80ffff"
+      allowEditing = false
+      allowAddRows = false
+      height = 169.0
+      left = 375.0
+      top = 257.0
+      width = 366.0
+   endwith
+
+   this.MYTABBOX = new TABBOX(this)
+   with (this.MYTABBOX)
+      onSelChange = class::MYTABBOX_ONSELCHANGE
+      onOpen = class::MYTABBOX_ONOPEN
+      id = 110
+      height = 22.0
+      left = 0.0
+      top = 772.0
+      width = 900.0
+      colorHighLight = "WindowText/0x80ffff"
+      dataSource = 'ARRAY {"Individual Record","Find Record"}'
+   endwith
+
+   this.MYIMAGE = new IMAGE(this)
+   with (this.MYIMAGE)
+      height = 163.0
+      left = 383.0
+      top = 439.0
+      width = 191.0
+      alignment = 3	// Keep Aspect Stretch
+   endwith
+
+   this.MYEDITOR = new EDITOR(this)
+   with (this.MYEDITOR)
+      key = class::MYEDITOR_KEY
+      height = 149.0
+      left = 588.0
+      top = 448.0
+      width = 177.0
+      value = ""
+      colorHighLight = "WindowText/0x80ffff"
+      evalTags = false
+      popupEnable = false
+   endwith
+
+   this.MYDISABLEDENTRYFIELD = new MYENTRYFIELD(this)
+   with (this.MYDISABLEDENTRYFIELD)
+      when = {;return false}
+      height = 22.0
+      left = 85.0
+      top = 592.0
+      width = 130.0
+      colorNormal = "White/Maroon"
+      value = "MyDisabledEntryfield"
+      mousePointer = 12	// No
+   endwith
+
+   this.MYTITLETEXT = new MYTEXT(this)
+   with (this.MYTITLETEXT)
+      height = 28.0
+      left = 489.0
+      top = 634.0
+      width = 160.0
+      colorNormal = "BLUE/BtnFace"
+      alignHorizontal = 1	// Center
+      fontSize = 14.0
+      fontBold = true
+      text = "MYTITLETEXT"
+      borderStyle = 1	// Raised
+   endwith
+
+   this.MYTOOLBAR = new CONTAINER(this)
+   with (this.MYTOOLBAR)
+      left = 115.0
+      top = 703.0
+      width = 470.0
+      height = 34.0
+      borderStyle = 4	// Single
+   endwith
+
+   this.MYTOOLBAR.PBNEW = new MYPUSHBUTTON(this.MYTOOLBAR)
+   with (this.MYTOOLBAR.PBNEW)
+      onClick = class::PBNEW_ONCLICK
+      height = 24.0
+      left = 15.0
+      top = 4.0
+      width = 70.0
+      text = "&New"
+      upBitmap = "filename :Glyfx:\Aero\CE\Dbase Aero\PNG\16x16\favourites_16.png"
+      fontSize = 8.0
+      speedTip = "Add a new record"
+      pageno = 0
+   endwith
+
+   this.MYTOOLBAR.PBEDIT = new MYPUSHBUTTON(this.MYTOOLBAR)
+   with (this.MYTOOLBAR.PBEDIT)
+      onClick = class::PBEDIT_ONCLICK
+      height = 24.0
+      left = 89.0
+      top = 4.0
+      width = 70.0
+      text = "&Edit"
+      upBitmap = "filename :Glyfx:\Aero\CE\Dbase Aero\PNG\16x16\document_open_16.png"
+      fontSize = 8.0
+      speedTip = "Edit current record"
+      pageno = 0
+   endwith
+
+   this.MYTOOLBAR.PBSAVE = new MYPUSHBUTTON(this.MYTOOLBAR)
+   with (this.MYTOOLBAR.PBSAVE)
+      onClick = class::PBSAVE_ONCLICK
+      height = 24.0
+      left = 165.0
+      top = 4.0
+      width = 70.0
+      text = "&Save"
+      upBitmap = "filename :Glyfx:\Aero\CE\Dbase Aero\PNG\16x16\save_16.png"
+      fontSize = 8.0
+      speedTip = "Save current record"
+      pageno = 0
+   endwith
+
+   this.MYTOOLBAR.PBCANCEL = new MYPUSHBUTTON(this.MYTOOLBAR)
+   with (this.MYTOOLBAR.PBCANCEL)
+      onClick = class::PBCANCEL_ONCLICK
+      height = 24.0
+      left = 240.0
+      top = 4.0
+      width = 70.0
+      text = "&Cancel"
+      upBitmap = "filename :Glyfx:\Aero\CE\Dbase Aero\PNG\16x16\stop_16.png"
+      fontSize = 8.0
+      speedTip = "Cancel changes"
+      pageno = 0
+   endwith
+
+   this.MYTOOLBAR.PBDELETE = new MYPUSHBUTTON(this.MYTOOLBAR)
+   with (this.MYTOOLBAR.PBDELETE)
+      onClick = class::PBDELETE_ONCLICK
+      height = 24.0
+      left = 317.0
+      top = 4.0
+      width = 70.0
+      text = "&Delete"
+      upBitmap = "filename :Glyfx:\Aero\CE\Dbase Aero\PNG\16x16\delete_16.png"
+      fontSize = 8.0
+      speedTip = "Delete current record"
+      pageno = 0
+   endwith
+
+   this.MYTOOLBAR.PBPREV = new MYPUSHBUTTON(this.MYTOOLBAR)
+   with (this.MYTOOLBAR.PBPREV)
+      onClick = class::PBPREV_ONCLICK
+      height = 24.0
+      left = 396.0
+      top = 4.0
+      width = 24.0
+      text = ""
+      upBitmap = "filename :Glyfx:\Aero\CE\Dbase Aero\PNG\16x16\arrow_left_16.png"
+      speedTip = "Previous record"
+      pageno = 0
+   endwith
+
+   this.MYTOOLBAR.PBNEXT = new MYPUSHBUTTON(this.MYTOOLBAR)
+   with (this.MYTOOLBAR.PBNEXT)
+      onClick = class::PBNEXT_ONCLICK
+      height = 24.0
+      left = 427.0
+      top = 4.0
+      width = 24.0
+      text = ""
+      upBitmap = "filename :Glyfx:\Aero\CE\Dbase Aero\PNG\16x16\arrow_right_16.png"
+      speedTip = "Next record"
+      pageno = 0
+   endwith
+
+
+   function MYCOMBOBOX_onChange()
+      // this = combobox
+		// datalink = field
+		// parent = field array
+		// parent = rowset
+		if this.datalink.parent.parent.state == 1
+			this.value = this.savedValue
+			this.datalink.parent.parent.modified = false
+			this.datalink.parent.parent.abandon()
+		endif
+      return
+
+   function MYCOMBOBOX_onGotFocus()
+      this.savedValue = this.value
+      return
+
+   function MYEDITOR_key(nChar, nPosition,bShift,bControl)
+      /*
+			This code by Gary White is provided to
+			get around a problem with rowsets that
+			have the autoEdit property set to false,
+			and editors. The editor seems to be immune
+			to this property once you make a change
+			in it -- if you then save or abandon, you
+			can actually edit the contents of the editor
+			object ...
+		*/
+		// this = editor
+		// dataLink = field
+		// parent = fieldArray
+		// parent = rowset
+		if type( "this.datalink.parent.parent" ) # "U"
+			r = this.datalink.parent.parent
+			if r.autoEdit == false and ;
+				( r.state # 2 and r.state # 3 )
+				return 0
+			endif
+		endif
+      return
+
+   function MYTABBOX_onOpen()
+      this.curSel := 1
+      form.pageNo := 1
+      return
+
+   function MYTABBOX_onSelChange()
+      form.pageNo := this.curSel
+      return
+
+   function PBCANCEL_onClick()
+      if form.rowset.modified
+			if msgbox( "Abandon changes to this row?", "Abandon changes?", 36 ) == 6
+				form.rowset.abandon()
+			endif
+		else
+			form.rowset.abandon()
+		endif
+      return
+
+   function PBDELETE_onClick()
+      if msgbox( "Delete this row?", "Delete Row?", 36 ) == 6
+						form.rowset.delete()
+		endif
+      return
+
+   function PBEDIT_onClick()
+      form.rowset.beginEdit()
+      return
+
+   function PBNEW_onClick()
+      form.rowset.beginAppend()
+      return
+
+   function PBNEXT_onClick()
+      if ( not form.rowset.next() )
+			form.rowset.next( -1 )
+			msgbox( "At end of rowset", "Can't Navigate", 64 )
+		endif
+      return
+
+   function PBPREV_onClick()
+      if ( not form.rowset.next(-1) )
+			form.rowset.next()
+			msgbox( "At beginning of rowset", "Can't Navigate", 64 )
+		endif
+      return
+
+   function PBSAVE_onClick()
+      form.rowset.save()
+      return
+
+endclass
+

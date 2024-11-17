@@ -1,4 +1,9 @@
 Backup*
 _QSQ*
 /custom/*.cdo
+/custom/*.cfo
+/custom/*.co
 /*.dmo
+/*.wfo
+*.pro
+/custom/*.wfo

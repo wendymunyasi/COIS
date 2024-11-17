@@ -1,0 +1,238 @@
+** END HEADER -- do not remove this line
+//
+// Generated on 17/11/2024
+//
+parameter bModal
+local f
+f = new SupplierForm()
+if (bModal)
+   f.mdi = false // ensure not MDI
+   f.readModal()
+else
+   f.open()
+endif
+
+class SupplierForm of DATAFORMCFORM from :DT_Custom2:DataForm.cfm
+   set procedure to :FormControls:seeker.cc additive
+   set procedure to supplier.dmd additive
+   set procedure to :DT_Custom2:MyControls2.cc additive
+   with (this)
+      height = 736.0
+      width = 764.0
+      text = "Suppliers Data Form"
+   endwith
+
+   this.SUPPLIERDATAMODULE1 = new SUPPLIERDATAMODULE()
+   this.SUPPLIERDATAMODULE1.parent = this
+   with (this.SUPPLIERDATAMODULE1)
+      left = 633.0
+      top = 50.0
+      width = 100.0
+      height = 37.0
+   endwith
+
+   with (this.MYTITLETEXT1)
+      text = "SUPPLIERS FORM"
+   endwith
+
+   with (this.MYGRID1)
+      dataLink = form.supplierdatamodule1.supplier1.rowset
+      columns["Column1"] = new GRIDCOLUMN(form.MYGRID1)
+      with (columns["Column1"])
+         dataLink = form.supplierdatamodule1.supplier1.rowset.fields["company"]
+         editorType = 1	// EntryField
+         width = 177.0
+      endwith
+      columns["Column2"] = new GRIDCOLUMN(form.MYGRID1)
+      with (columns["Column2"])
+         dataLink = form.supplierdatamodule1.supplier1.rowset.fields["contact"]
+         editorType = 1	// EntryField
+         width = 127.0
+      endwith
+      columns["Column3"] = new GRIDCOLUMN(form.MYGRID1)
+      with (columns["Column3"])
+         dataLink = form.supplierdatamodule1.supplier1.rowset.fields["email"]
+         editorType = 1	// EntryField
+         width = 199.0
+      endwith
+      columns["Column4"] = new GRIDCOLUMN(form.MYGRID1)
+      with (columns["Column4"])
+         dataLink = form.supplierdatamodule1.supplier1.rowset.fields["phone"]
+         editorType = 1	// EntryField
+         width = 200.0
+      endwith
+      with (columns["Column1"].headingControl)
+         value = "Company"
+      endwith
+
+      with (columns["Column2"].headingControl)
+         value = "Contact"
+      endwith
+
+      with (columns["Column3"].headingControl)
+         value = "Email"
+      endwith
+
+      with (columns["Column4"].headingControl)
+         value = "Phone"
+      endwith
+
+   endwith
+
+   this.COMPANYTEXTLABEL = new MYTEXTLABEL(this)
+   with (this.COMPANYTEXTLABEL)
+      height = 22.0
+      left = 105.0
+      top = 141.0
+      width = 84.0
+      text = "Company:"
+   endwith
+
+   this.COMPANYENTRYFIELD = new MYENTRYFIELD(this)
+   with (this.COMPANYENTRYFIELD)
+      dataLink = form.supplierdatamodule1.supplier1.rowset.fields["company"]
+      height = 22.0
+      left = 203.0
+      top = 140.0
+      width = 198.0
+   endwith
+
+   this.CONTACTTEXTLABEL = new MYTEXTLABEL(this)
+   with (this.CONTACTTEXTLABEL)
+      height = 22.0
+      left = 105.0
+      top = 177.0
+      width = 84.0
+      text = "Contact:"
+   endwith
+
+   this.CONTACTENTRYFIELD = new MYENTRYFIELD(this)
+   with (this.CONTACTENTRYFIELD)
+      dataLink = form.supplierdatamodule1.supplier1.rowset.fields["contact"]
+      height = 22.0
+      left = 203.0
+      top = 173.0
+      width = 132.0
+   endwith
+
+   this.ADDRESSTEXTLABEL = new MYTEXTLABEL(this)
+   with (this.ADDRESSTEXTLABEL)
+      height = 22.0
+      left = 105.0
+      top = 212.0
+      width = 84.0
+      text = "Address:"
+   endwith
+
+   this.STREET1ENTRYFIELD = new MYENTRYFIELD(this)
+   with (this.STREET1ENTRYFIELD)
+      dataLink = form.supplierdatamodule1.supplier1.rowset.fields["street1"]
+      height = 22.0
+      left = 203.0
+      top = 205.0
+      width = 101.0
+   endwith
+
+   this.STREET2ENTRYFIELD = new MYENTRYFIELD(this)
+   with (this.STREET2ENTRYFIELD)
+      dataLink = form.supplierdatamodule1.supplier1.rowset.fields["street2"]
+      height = 22.0
+      left = 203.0
+      top = 241.0
+      width = 101.0
+   endwith
+
+   this.CITYENTRYFIELD = new MYENTRYFIELD(this)
+   with (this.CITYENTRYFIELD)
+      dataLink = form.supplierdatamodule1.supplier1.rowset.fields["city"]
+      height = 22.0
+      left = 203.0
+      top = 274.0
+      width = 101.0
+   endwith
+
+   this.STATECOMBOBOX = new MYCOMBOBOX(this)
+   with (this.STATECOMBOBOX)
+      dataLink = form.supplierdatamodule1.supplier1.rowset.fields["state id"]
+      height = 22.0
+      left = 318.0
+      top = 274.0
+      width = 84.0
+   endwith
+
+   this.POSTALENTRYFIELD = new MYENTRYFIELD(this)
+   with (this.POSTALENTRYFIELD)
+      dataLink = form.supplierdatamodule1.supplier1.rowset.fields["postal"]
+      height = 22.0
+      left = 414.0
+      top = 274.0
+      width = 101.0
+   endwith
+
+   this.COUNTRYCOMBOBOX = new MYCOMBOBOX(this)
+   with (this.COUNTRYCOMBOBOX)
+      dataLink = form.supplierdatamodule1.supplier1.rowset.fields["country id"]
+      height = 22.0
+      left = 525.0
+      top = 274.0
+      width = 138.0
+   endwith
+
+   this.PHONETEXTLABEL = new MYTEXTLABEL(this)
+   with (this.PHONETEXTLABEL)
+      height = 22.0
+      left = 105.0
+      top = 307.0
+      width = 84.0
+      text = "Phone:"
+   endwith
+
+   this.PHONEENTRYFIELD = new MYENTRYFIELD(this)
+   with (this.PHONEENTRYFIELD)
+      dataLink = form.supplierdatamodule1.supplier1.rowset.fields["phone"]
+      height = 22.0
+      left = 203.0
+      top = 305.0
+      width = 130.0
+   endwith
+
+   this.FAXTEXTLABEL = new MYTEXTLABEL(this)
+   with (this.FAXTEXTLABEL)
+      height = 22.0
+      left = 375.0
+      top = 307.0
+      width = 84.0
+      text = "Fax:"
+   endwith
+
+   this.FAXENTRYFIELD = new MYENTRYFIELD(this)
+   with (this.FAXENTRYFIELD)
+      dataLink = form.supplierdatamodule1.supplier1.rowset.fields["fax"]
+      height = 22.0
+      left = 474.0
+      top = 305.0
+      width = 101.0
+   endwith
+
+   this.EMAILTEXTLABEL = new MYTEXTLABEL(this)
+   with (this.EMAILTEXTLABEL)
+      height = 22.0
+      left = 105.0
+      top = 342.0
+      width = 84.0
+      text = "Email:"
+   endwith
+
+   this.EMAILENTRYFIELD = new MYENTRYFIELD(this)
+   with (this.EMAILENTRYFIELD)
+      dataLink = form.supplierdatamodule1.supplier1.rowset.fields["email"]
+      height = 22.0
+      left = 203.0
+      top = 339.0
+      width = 249.0
+   endwith
+
+   this.rowset = this.supplierdatamodule1.supplier1.rowset
+
+endclass
+

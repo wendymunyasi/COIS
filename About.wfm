@@ -1,0 +1,94 @@
+** END HEADER -- do not remove this line
+//
+// Generated on 17/11/2024
+//
+parameter bModal
+local f
+f = new AboutForm()
+if (bModal)
+   f.mdi = false // ensure not MDI
+   f.readModal()
+else
+   f.open()
+endif
+
+class AboutForm of DIALOGFORMCFORM from :DT_Custom2:DialogForm.cfm
+   set procedure to :DT_Custom2:mycontrols2.cc additive
+   with (this)
+      onOpen = class::FORM_ONOPEN
+      height = 237.0
+      left = 317.0
+      top = 146.0
+      width = 582.0
+   endwith
+
+   with (this.MYTITLETEXT1)
+      text = "ABOUT PROJECT"
+   endwith
+
+   with (this.PBSAVE)
+      visible = false
+      left = 156.0
+      top = 192.0
+   endwith
+
+   with (this.PBCANCEL)
+      visible = false
+      left = 329.0
+      top = 192.0
+   endwith
+
+   this.MYTEXT1 = new MYTEXT(this)
+   with (this.MYTEXT1)
+      height = 87.0
+      left = 126.0
+      top = 38.0
+      width = 359.0
+      l0 = "<p>This is a tutorial project for dBASE PLUS. </p><p>The application was created by Ken Mayer and updated             for dBASE PLUS by Michael Nuwer through 2002 (and             then updated by Ken Mayer again for more recent             versions of dBAS"
+      l0 += "E -- January, 2017). Enjoy!</p>"
+      text = l0
+   endwith
+
+   this.MYTEXTLABEL1 = new MYTEXTLABEL(this)
+   with (this.MYTEXTLABEL1)
+      height = 22.0
+      left = 122.0
+      top = 137.0
+      width = 354.0
+      text = "dBASE Version: 2019"
+      fontBold = false
+      alignHorizontal = 1	// Center
+   endwith
+
+   this.MYPUSHBUTTON1 = new MYPUSHBUTTON(this)
+   with (this.MYPUSHBUTTON1)
+      onClick = class::MYPUSHBUTTON1_ONCLICK
+      height = 24.0
+      left = 229.0
+      top = 160.0
+      width = 107.0
+      text = "&Ok"
+      speedTip = "Close this form"
+   endwith
+
+
+   function MYPUSHBUTTON1_onClick()
+      form.close()
+      return
+
+   function form_onOpen()
+      // get the current version information of dBASE/Runtime:
+		local cVersion
+		cVersion = version(1)
+		// remove date and other information
+		cVersion = left( cVersion, at( "(", cVersion ) - 2 )
+		// store in the text label on the form:
+		form.MyTextLabel1.text := "dBASE Version: " + cVersion
+		
+		// take text from application titleBar, and 
+		// place in titleBar of the About form:
+		form.text := _app.framewin.text
+      return
+
+endclass
+

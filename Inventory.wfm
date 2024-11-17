@@ -1,0 +1,249 @@
+** END HEADER -- do not remove this line
+//
+// Generated on 17/11/2024
+//
+parameter bModal
+local f
+f = new InventoryForm()
+if (bModal)
+   f.mdi = false // ensure not MDI
+   f.readModal()
+else
+   f.open()
+endif
+
+class InventoryForm of DATAFORMCFORM from :DT_Custom2:DataForm.cfm
+   set procedure to :FormControls:seeker.cc additive
+   set procedure to inventory.dmd additive
+   set procedure to :DT_Custom2:MyControls2.cc additive
+   with (this)
+      height = 617.0
+      width = 764.0
+      text = "Inventory Information"
+   endwith
+
+   this.INVENTORYDATAMODULE1 = new INVENTORYDATAMODULE()
+   this.INVENTORYDATAMODULE1.parent = this
+   with (this.INVENTORYDATAMODULE1)
+      left = 26.0
+      top = 74.0
+      width = 100.0
+      height = 37.0
+   endwith
+
+   with (this.MYTITLETEXT1)
+      text = "INVENTORY FORM"
+   endwith
+
+   with (this.MYGRID1)
+      dataLink = form.inventorydatamodule1.inventory1.rowset
+      columns["COLUMN1"] = new GRIDCOLUMN(form.MYGRID1)
+      with (columns["COLUMN1"])
+         dataLink = form.inventorydatamodule1.inventory1.rowset.fields["description"]
+         editorType = 1	// EntryField
+         width = 273.0
+      endwith
+      columns["COLUMN2"] = new GRIDCOLUMN(form.MYGRID1)
+      with (columns["COLUMN2"])
+         dataLink = form.inventorydatamodule1.inventory1.rowset.fields["qty"]
+         editorType = 3	// SpinBox
+         width = 130.0
+      endwith
+      columns["COLUMN3"] = new GRIDCOLUMN(form.MYGRID1)
+      with (columns["COLUMN3"])
+         dataLink = form.inventorydatamodule1.inventory1.rowset.fields["supplier id"]
+         editorType = 4	// ComboBox
+         width = 226.0
+      endwith
+      with (columns["COLUMN1"].headingControl)
+         value = "Description"
+      endwith
+
+      with (columns["COLUMN2"].editorControl)
+         rangeMax = 100
+         rangeMin = 1
+      endwith
+
+      with (columns["COLUMN2"].headingControl)
+         value = "Qty"
+      endwith
+
+      with (columns["COLUMN3"].editorControl)
+         style = 1	// DropDownList
+         dropDownHeight = 132.0
+      endwith
+
+      with (columns["COLUMN3"].headingControl)
+         value = "Company"
+      endwith
+
+      height = 488.0
+      left = 13.0
+      top = 79.0
+      width = 731.0
+   endwith
+
+   this.DESCRIPTIONTEXTLABEL = new MYTEXTLABEL(this)
+   with (this.DESCRIPTIONTEXTLABEL)
+      height = 22.0
+      left = 116.0
+      top = 113.0
+      width = 84.0
+      text = "Description:"
+   endwith
+
+   this.DESCRIPTIONENTRYFIELD = new MYENTRYFIELD(this)
+   with (this.DESCRIPTIONENTRYFIELD)
+      dataLink = form.inventorydatamodule1.inventory1.rowset.fields["description"]
+      height = 22.0
+      left = 220.0
+      top = 110.0
+      width = 308.0
+   endwith
+
+   this.MYTEXTLABEL2 = new MYTEXTLABEL(this)
+   with (this.MYTEXTLABEL2)
+      height = 22.0
+      left = 52.0
+      top = 145.0
+      width = 148.0
+      text = "Quantity on Hand:"
+   endwith
+
+   this.QUANTITYSPINBOX = new MYSPINBOX(this)
+   with (this.QUANTITYSPINBOX)
+      dataLink = form.inventorydatamodule1.inventory1.rowset.fields["qty"]
+      height = 22.0
+      left = 220.0
+      top = 147.0
+      width = 56.0
+      picture = "999999"
+   endwith
+
+   this.SUPPLIERTEXTLABEL = new MYTEXTLABEL(this)
+   with (this.SUPPLIERTEXTLABEL)
+      height = 22.0
+      left = 116.0
+      top = 189.0
+      width = 84.0
+      text = "Supplier:"
+   endwith
+
+   this.SUPPLIERCOMBOBOX = new MYCOMBOBOX(this)
+   with (this.SUPPLIERCOMBOBOX)
+      dataLink = form.inventorydatamodule1.inventory1.rowset.fields["supplier id"]
+      height = 30.0
+      left = 220.0
+      top = 185.0
+      width = 262.0
+   endwith
+
+   this.PICTURETEXTLABEL = new MYTEXTLABEL(this)
+   with (this.PICTURETEXTLABEL)
+      height = 22.0
+      left = 116.0
+      top = 233.0
+      width = 84.0
+      text = "Picture:"
+   endwith
+
+   this.INVENTORYIMAGE = new MYIMAGE(this)
+   with (this.INVENTORYIMAGE)
+      height = 177.0
+      left = 220.0
+      top = 236.0
+      width = 191.0
+      dataSource = form.inventorydatamodule1.inventory1.rowset.fields["picture"]
+   endwith
+
+   this.PBIMAGEEDIT_ADD = new MYPUSHBUTTON(this)
+   with (this.PBIMAGEEDIT_ADD)
+      onClick = class::PBIMAGEEDIT_ADD_ONCLICK
+      height = 24.0
+      left = 419.0
+      top = 296.0
+      width = 143.0
+      text = "Add/Edit Image"
+      upBitmap = "filename :Glyfx:\Aero\CE\Dbase Aero\PNG\16x16\view_16.png"
+   endwith
+
+   this.rowset = this.inventorydatamodule1.inventory1.rowset
+
+  
+
+   function PBIMAGEEDIT_ADD_onClick()
+      // Code created April, 2024 -- KJM
+		private cFile, cDire, oField
+		
+		// are we in edit (2) or append (3) mode?
+		if (form.rowset.state # 2 and form.rowset.state # 3 )
+			msgbox( "You are not editing or adding a new row.",;
+					  "Cannot Change Image", 16 )
+			return
+		endif // check state of rowset
+		
+		// create a shortcut to the picture field in the table:
+		oField = form.rowset.fields["picture"]
+		
+		// check to see if the field is empty:
+		if not empty( oField.value )
+			// the msgbox function allows you to ask the user questions, 
+			// 36 comes from adding 4 for the boxtype (Yes, No); and the icon to 
+			// display (32 = question mark):
+			if msgbox( "Picture field for this record has an image, do you want to overwrite it?",;
+						  "Picture Not Empty", 36 ) == 7 // "No" button selected
+				// user said "No", so there's nothing else to do:
+				return
+			endif
+		endif // empty
+		
+		/*
+			If we are here, we are in either edit or append mode,
+			and the user is okay to overwrite an image if it exists
+			(or the picture field is empty ...) so it's okay to 
+			alter the image. If we are in append mode,
+			there should be nothing there ... however, a binary field
+			is tricky. There are several ways to check things, like
+			if a binary field is empty or not. However, once a binary
+			field has a value there is no method of deleting the contents.
+			One method of *appearing* to deleting the contents is to create
+			a blank image file and storing that in the field. 
+			For the purpose of the tutorial I have created a "No Image Available" 
+			image, and downloaded some free stock photos from the web
+			that can be used for testing purposes. All in the folder "Mug_Images".
+		*/
+		
+		// The getFile() dialog is a bit tricky. The first parameter shown
+		// is where to find the images; the second is the title at the top
+		// of the dialog; the third says that we're not looking for tables 
+		// in a database, so don't display the option to look in a database;
+		// the fourth allows us to include all image types that dBASE knows
+		// to look for:
+		cFile = getFile( "Mug_Images\*.*", "Select Image", true, "Images ()" )
+		// If the filename is empty, the user cancelled or closed the dialog
+		// without selecting an image:
+		if empty( cFile )
+			// Ask about using a 'default' image:
+			if msgbox( "No image selected, use default 'No Image Available' image?",;
+						  "No Image Selected", 36 ) == 6 // "Yes" button selected
+				// set the value here:
+				cDire = set( "dire" ) // set directory = current path
+				cFile = cDire + "\Mug_Images\No Image Available.png"
+			else
+				// no image selected, there's nothing to do, return without changing
+				// anything:
+				return
+			endif // msgbox
+		endif // empty ...
+		
+		// for this we are going to use a method of the binary field to
+		// replace the contents with something:
+		oField.replaceFromFile( cFile )
+		// the big trick here is that you won't see the change until
+		// the row is saved ... it won't look like anything happened
+		// until then.
+      return
+		
+
+endclass
+
