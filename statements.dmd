@@ -1,0 +1,74 @@
+** END HEADER -- do not remove this line
+//
+// Generated on 24/11/2024
+//
+class statementsDATAMODULE of BASECDATAMODULE from :DT_Custom2:base.cdm
+   with (this.DBASETUTORIAL21)
+      left = 19.0
+      top = 135.0
+      width = 115.0
+      height = 112.0
+   endwith
+
+   this.STATEMENTS1 = new QUERY(this)
+   with (this.STATEMENTS1)
+      onOpen = class::STATEMENTS1_ONOPEN
+      left = 125.0
+      top = 45.0
+      width = 114.0
+      height = 84.0
+      database = form.dbasetutorial21
+      sql = "@C:\dBASETutorial2\statements.sql"
+      active = true
+   endwith
+
+   with (this.STATEMENTS1.rowset)
+      canGetRow = class::ROWSET_CANGETROW
+      with (fields["State ID"])
+         lookupSQL = "select * from state"
+      endwith
+      with (fields["Country ID"])
+         lookupSQL = "select * from country"
+      endwith
+      with (fields["Item ID"])
+         lookupSQL = "select inventory.'item id', description from inventory"
+      endwith
+      with (fields["Item Price"])
+         beforeGetValue = class::ITEMPRICE_BEFOREGETVALUE
+      endwith
+      with (fields["Item ID2"])
+         beforeGetValue = class::ITEMID2_BEFOREGETVALUE
+      endwith
+   endwith
+
+
+   function ItemID2_beforeGetValue()
+      
+      return (this.parent['Item ID'].lookuprowset.fields[1].value)
+
+   function ItemPrice_beforeGetValue()
+      
+      return (this.parent['Qty'].value * 10.00)
+
+   function STATEMENTS1_onOpen()
+      class::calcField("Item Price",10)
+		class::calcField("Item ID2",5)
+      return
+
+   function rowset_canGetRow()
+      local bYes
+		bYes = false
+		if type("_app.start") # "U"
+			if (this.fields['order date'].value >= _app.start) and ;
+				(this.fields['order date'].value <= _app.stop)
+				bYes = true
+			endif
+		else
+			// if there is no data range we will print
+			// all records.
+			bYes = true
+		endif
+      return true
+
+endclass
+

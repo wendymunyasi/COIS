@@ -1,6 +1,6 @@
 ** END HEADER -- do not remove this line
 //
-// Generated on 17/11/2024
+// Generated on 22/11/2024
 //
 parameter bModal
 local f
@@ -18,6 +18,8 @@ class InvoiceForm of BASECFORM from :DT_Custom2:Base.cfm
    set procedure to Invoice.dmd additive
    with (this)
       onOpen = class::FORM_ONOPEN
+      left = 545.0
+      top = -19.0
       text = "Invoices"
    endwith
 
@@ -301,33 +303,33 @@ class InvoiceForm of BASECFORM from :DT_Custom2:Base.cfm
    this.LINEITEMCONTAINER.MYGRID1 = new MYGRID(this.LINEITEMCONTAINER)
    with (this.LINEITEMCONTAINER.MYGRID1)
       dataLink = form.invoicedatamodule1.lineitem1.rowset
-      columns["Column1"] = new GRIDCOLUMN(form.LINEITEMCONTAINER.MYGRID1)
-      with (columns["Column1"])
+      columns["COLUMN1"] = new GRIDCOLUMN(form.LINEITEMCONTAINER.MYGRID1)
+      with (columns["COLUMN1"])
          dataLink = form.invoicedatamodule1.lineitem1.rowset.fields["item id"]
          editorType = 4	// ComboBox
          width = 265.0
       endwith
-      columns["Column2"] = new GRIDCOLUMN(form.LINEITEMCONTAINER.MYGRID1)
-      with (columns["Column2"])
+      columns["COLUMN2"] = new GRIDCOLUMN(form.LINEITEMCONTAINER.MYGRID1)
+      with (columns["COLUMN2"])
          dataLink = form.invoicedatamodule1.lineitem1.rowset.fields["qty"]
          editorType = 3	// SpinBox
          width = 212.0
       endwith
-      with (columns["Column1"].editorControl)
+      with (columns["COLUMN1"].editorControl)
          style = 1	// DropDownList
          dropDownHeight = 132.0
       endwith
 
-      with (columns["Column1"].headingControl)
+      with (columns["COLUMN1"].headingControl)
          value = "Description"
       endwith
 
-      with (columns["Column2"].editorControl)
+      with (columns["COLUMN2"].editorControl)
          rangeMax = 100
          rangeMin = 1
       endwith
 
-      with (columns["Column2"].headingControl)
+      with (columns["COLUMN2"].headingControl)
          value = "Qty"
       endwith
 
@@ -489,7 +491,20 @@ class InvoiceForm of BASECFORM from :DT_Custom2:Base.cfm
       return
 
    function PRINTINVOICE_onClick()
-      // code will go here:
+      // check to see if we're at the endOfSet (i.e.,
+		// no invoices), otherwise we'll do the print
+		// routine:
+		r = form.INVOICEDATAMODULE1.invoice1.rowset
+		if not r.endOfSet
+			// store the primary key field needed
+			// in the _app object as custom property
+			_app.InvoiceID  = r.fields["Invoice ID"].value
+			// Call the report with the preview form ...
+			do preview.wfm with "Invoice.rep", true // modal!!
+			_app.InvoiceID  = NULL // cleanup
+		else
+			msgbox( "There is nothing to Print!", "Can't do that!", 16 )
+		endif
       return
 
    function form_onOpen()

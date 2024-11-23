@@ -1,0 +1,79 @@
+class BaseCReport of REPORT custom
+   set procedure to :DT_Custom2:CustomReportControls2.cc additive
+   set procedure to C:\ProgramData\dBASE\dBASE2019\dBLClasses\ReportControls\REPORT.CC additive
+   with (this)
+      title = "Tutorial Custom Report"
+      metric = 3	// Inches
+      autoSort = false
+   endwith
+
+   with (this.printer)
+      duplex = 1	// None
+      orientation = 1	// Portrait
+      paperSource = 15
+      paperSize = 1
+      resolution = 0	// Default
+      color = 2	// Color
+      trueTypeFonts = 3	// Substitute
+   endwith
+
+   this.STREAMSOURCE1 = new STREAMSOURCE(this)
+   with (this.STREAMSOURCE1.detailBand)
+      height = 0.1736
+   endwith
+
+   this.PAGETEMPLATE1 = new PAGETEMPLATE(this)
+   with (this.PAGETEMPLATE1)
+      height = 11.0
+      width = 8.5
+      marginTop = 0.5
+      marginLeft = 0.5
+      marginBottom = 0.5
+      marginRight = 0.5
+      gridLineWidth = 0
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME1 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME1)
+      height = 8.94
+      left = 0.0
+      top = 0.72
+      width = 7.5
+      form.STREAMFRAME1 = form.pagetemplate1.streamframe1
+   endwith
+
+   this.PAGETEMPLATE1.MYREPORTTITLETEXT1 = new MYREPORTTITLETEXT(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.MYREPORTTITLETEXT1)
+      height = 0.3
+      left = 2.1146
+      top = 0.05
+      width = 3.2813
+      fontBold = true
+      text = "Tutorial Custom Report"
+      form.MYREPORTTITLETEXT1 = form.pagetemplate1.myreporttitletext1
+   endwith
+
+   this.PAGETEMPLATE1.MYDATETEXT1 = new MYDATETEXT(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.MYDATETEXT1)
+      height = 0.2083
+      left = 2.8854
+      top = 0.375
+      width = 1.7188
+      form.MYDATETEXT1 = form.pagetemplate1.mydatetext1
+   endwith
+
+   this.PAGETEMPLATE1.PAGENUMBER1 = new PAGENUMBER(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.PAGENUMBER1)
+      height = 0.2083
+      left = 3.6458
+      top = 9.7188
+      width = 0.2083
+      form.PAGENUMBER1 = form.pagetemplate1.pagenumber1
+   endwith
+
+   this.firstPageTemplate = this.form.pagetemplate1
+   this.form.pagetemplate1.nextPageTemplate = this.form.pagetemplate1
+   this.form.pagetemplate1.streamframe1.streamSource = this.form.streamsource1
+
+endclass
+

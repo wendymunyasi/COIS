@@ -1,0 +1,123 @@
+** END HEADER -- do not remove this line
+//
+// Generated on 24/11/2024
+//
+parameter bModal
+local f
+f = new GetDatesForm()
+if (bModal)
+   f.mdi = false // ensure not MDI
+   f.readModal()
+else
+   f.open()
+endif
+
+class GetDatesForm of DIALOGFORMCFORM from :DT_Custom2:DialogForm.cfm
+   set procedure to :DT_Custom2:mycontrols2.cc additive
+   set procedure to :DT_Custom2:CustomReportControls2.cc additive
+   with (this)
+      onOpen = class::FORM_ONOPEN
+      height = 164.0
+      left = 684.0
+      top = 92.0
+      width = 483.0
+      text = "Desired Date Range"
+   endwith
+
+   with (this.MYTITLETEXT1)
+      text = "Desired Date Range"
+   endwith
+
+   with (this.PBSAVE)
+      onClick = class::PBSAVE_ONCLICK
+      height = 31.0
+      left = 96.0
+      top = 97.0
+      width = 107.0
+      fontSize = 12.0
+   endwith
+
+   with (this.PBCANCEL)
+      onClick = class::PBCANCEL_ONCLICK
+      height = 32.0
+      left = 297.0
+      top = 97.0
+      width = 107.0
+      fontSize = 12.0
+   endwith
+
+   this.STARTDATESB = new MYSPINBOX(this)
+   with (this.STARTDATESB)
+      height = 27.0
+      left = 98.0
+      top = 35.0
+      width = 114.0
+      fontSize = 12.0
+      value = {  /  /    }
+   endwith
+
+   this.ENDDATESB = new MYSPINBOX(this)
+   with (this.ENDDATESB)
+      height = 27.0
+      left = 289.0
+      top = 34.0
+      width = 114.0
+      fontSize = 12.0
+      value = {  /  /    }
+   endwith
+
+   this.MYFIELDHEADINGTEXT1 = new MYFIELDHEADINGTEXT(this)
+   with (this.MYFIELDHEADINGTEXT1)
+      height = 19.0
+      left = 97.0
+      top = 67.0
+      width = 107.0
+      alignHorizontal = 1	// Center
+      fontSize = 12.0
+      text = "Start Date"
+   endwith
+
+   this.MYFIELDHEADINGTEXT2 = new MYFIELDHEADINGTEXT(this)
+   with (this.MYFIELDHEADINGTEXT2)
+      height = 19.0
+      left = 290.0
+      top = 67.0
+      width = 107.0
+      alignHorizontal = 1	// Center
+      fontSize = 12.0
+      text = "End Date"
+   endwith
+
+
+   function PBCANCEL_onClick()
+      // override method in super class
+		_app.Start = {}
+		_app.Stop  = {}
+		form.close()
+      return
+
+   function PBSAVE_onClick()
+      //  store dates to app variables
+		_app.Start = form.StartDateSB.value
+		_app.Stop  = form.EndDateSB.value
+
+		// call report
+		set procedure to preview.wfm additive
+		set procedure to statements.rep additive
+		fPreview = new PreviewForm()
+		// to open with ReadModal()
+		fPreview.bModal = true 
+		fPreview.viewer.fileName := "statements.rep" 
+		fPreview.Open()
+		
+		// cleanup
+		form.close()
+      return
+
+   function form_onOpen()
+      form.StartDateSB.value  = ctod('12/01/2016') 
+		form.EndDateSB.value   = ctod('12/31/2016')
+      return
+
+endclass
+

@@ -7,3 +7,9 @@ _QSQ*
 /*.wfo
 *.pro
 /custom/*.wfo
+/custom/*.dmo
+/custom/*.cro
+*.reo
+*.lao
+*.pro
+configure.pro

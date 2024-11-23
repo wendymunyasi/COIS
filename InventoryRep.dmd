@@ -1,0 +1,40 @@
+** END HEADER -- do not remove this line
+//
+// Generated on 22/11/2024
+//
+class InventoryRepDATAMODULE of SUPPLIERDATAMODULE from "supplier.dmd"
+   with (this.DBASETUTORIAL21)
+      left = 19.0
+      top = 135.0
+      width = 115.0
+      height = 112.0
+   endwith
+
+   with (this.SUPPLIER1)
+      left = 148.0
+      top = 24.0
+      width = 114.0
+      height = 108.0
+   endwith
+
+   this.INVENTORY1 = new QUERY(this)
+   with (this.INVENTORY1)
+      left = 421.0
+      top = 24.0
+      width = 114.0
+      height = 124.0
+      database = form.dbasetutorial21
+      sql = 'Select * from "inventory"'
+      active = true
+   endwith
+
+   with (this.INVENTORY1.rowset)
+      indexName = "SUPPLIER ID"
+      masterRowset = form.supplier1.rowset
+      masterFields = "Supplier ID"
+   endwith
+
+   this.rowset = this.supplier1.rowset
+
+endclass
+

@@ -1,0 +1,179 @@
+** END HEADER -- do not remove this line
+//
+// Generated on 22/11/2024
+//
+local r
+r = new INVENTORYREPORT()
+r.render()
+
+class INVENTORYREPORT of BASECREPORT from :DT_Custom2:Base.crp
+   set procedure to InventoryRep.dmd additive
+   set procedure to :DT_Custom2:CustomReportControls2.cc additive
+   set procedure to C:\ProgramData\dBASE\dBASE2019\dBLClasses\ReportControls\REPORT.CC additive
+   with (this)
+      title = "Inventory by Supplier"
+   endwith
+
+   this.INVENTORYREPDATAMODULE1 = new INVENTORYREPDATAMODULE()
+   this.INVENTORYREPDATAMODULE1.parent = this
+   form.STREAMFRAME1 = form.pagetemplate1.streamframe1
+
+   with (this.PAGETEMPLATE1.MYREPORTTITLETEXT1)
+      text = "Inventory by Supplier"
+      form.MYREPORTTITLETEXT1 = form.pagetemplate1.myreporttitletext1
+   endwith
+
+   form.MYDATETEXT1 = form.pagetemplate1.mydatetext1
+
+   form.PAGENUMBER1 = form.pagetemplate1.pagenumber1
+
+   this.STREAMSOURCE1.GROUP1 = new GROUP(this.STREAMSOURCE1)
+   with (this.STREAMSOURCE1.GROUP1)
+      groupBy = "Company"
+   endwith
+
+   this.STREAMSOURCE1.GROUP1.footerBand.MYFIELDHEADINGTEXT1 = new MYFIELDHEADINGTEXT(this.STREAMSOURCE1.GROUP1.footerBand)
+   with (this.STREAMSOURCE1.GROUP1.footerBand.MYFIELDHEADINGTEXT1)
+      height = 0.2083
+      left = 0.0625
+      top = 0.0
+      width = 4.0
+      fontSize = 10.0
+      fontBold = true
+      text = "Total mugs on hand for this supplier:"
+   endwith
+
+   this.STREAMSOURCE1.GROUP1.footerBand.MYFIELDTEXT1 = new MYFIELDTEXT(this.STREAMSOURCE1.GROUP1.footerBand)
+   with (this.STREAMSOURCE1.GROUP1.footerBand.MYFIELDTEXT1)
+      height = 0.2083
+      left = 4.1354
+      top = 0.0
+      width = 0.4583
+      alignHorizontal = 2	// Right
+      picture = "999"
+      fontSize = 10.0
+      fontBold = true
+      text = {||this.parent.parent.agSum( {||this.parent.rowset.parent.parent.inventory1.rowset.fields[ "qty"].value})}
+   endwith
+
+   this.STREAMSOURCE1.GROUP1.headerBand.TEXT1 = new TEXT(this.STREAMSOURCE1.GROUP1.headerBand)
+   with (this.STREAMSOURCE1.GROUP1.headerBand.TEXT1)
+      height = 0.2083
+      left = 0.0
+      top = 0.0313
+      width = 0.9271
+      prefixEnable = false
+      fontSize = 12.0
+      fontBold = true
+      text = "Supplier:"
+   endwith
+
+   this.STREAMSOURCE1.GROUP1.headerBand.MYFIELDTEXT1 = new MYFIELDTEXT(this.STREAMSOURCE1.GROUP1.headerBand)
+   with (this.STREAMSOURCE1.GROUP1.headerBand.MYFIELDTEXT1)
+      height = 0.2083
+      left = 1.0
+      top = 0.0313
+      width = 2.0
+      fontSize = 12.0
+      fontBold = true
+      text = {||form.streamsource1.rowset.fields["Company"].value}
+   endwith
+
+   this.STREAMSOURCE1.GROUP1.headerBand.MYLINE1 = new MYLINE(this.STREAMSOURCE1.GROUP1.headerBand)
+   with (this.STREAMSOURCE1.GROUP1.headerBand.MYLINE1)
+      left = 0.0
+      right = 7.5
+      top = 0.0313
+      bottom = 0.0313
+      width = 0
+   endwith
+
+   with (this.STREAMSOURCE1.detailBand)
+      height = 0.0
+   endwith
+
+   this.STREAMSOURCE1.detailBand.MYFIELDHEADINGTEXT1 = new MYFIELDHEADINGTEXT(this.STREAMSOURCE1.detailBand)
+   with (this.STREAMSOURCE1.detailBand.MYFIELDHEADINGTEXT1)
+      canRender = {||this.parent.firstOnFrame}
+      height = 0.2083
+      left = 0.1875
+      top = 0.0618
+      width = 1.0
+      suppressIfBlank = true
+      fontBold = true
+      text = "Item ID"
+   endwith
+
+   this.STREAMSOURCE1.detailBand.MYFIELDHEADINGTEXT2 = new MYFIELDHEADINGTEXT(this.STREAMSOURCE1.detailBand)
+   with (this.STREAMSOURCE1.detailBand.MYFIELDHEADINGTEXT2)
+      canRender = {||this.parent.firstOnFrame}
+      height = 0.2083
+      left = 1.4792
+      top = 0.0618
+      width = 1.0
+      alignHorizontal = 0	// Left
+      suppressIfBlank = true
+      fontBold = true
+      text = "Description"
+   endwith
+
+   this.STREAMSOURCE1.detailBand.MYFIELDHEADINGTEXT3 = new MYFIELDHEADINGTEXT(this.STREAMSOURCE1.detailBand)
+   with (this.STREAMSOURCE1.detailBand.MYFIELDHEADINGTEXT3)
+      canRender = {||this.parent.firstOnFrame}
+      height = 0.2083
+      left = 3.6354
+      top = 0.0521
+      width = 1.0
+      suppressIfBlank = true
+      fontBold = true
+      text = "Quantity"
+   endwith
+
+   this.STREAMSOURCE1.detailBand.MYFIELDTEXT1 = new MYFIELDTEXT(this.STREAMSOURCE1.detailBand)
+   with (this.STREAMSOURCE1.detailBand.MYFIELDTEXT1)
+      height = 0.2083
+      left = 0.6979
+      top = 0.2292
+      width = 0.5
+      text = {||this.form.inventoryrepdatamodule1.inventory1.rowset.fields["Item ID"].value}
+   endwith
+
+   this.STREAMSOURCE1.detailBand.MYFIELDTEXT2 = new MYFIELDTEXT(this.STREAMSOURCE1.detailBand)
+   with (this.STREAMSOURCE1.detailBand.MYFIELDTEXT2)
+      height = 0.2083
+      left = 1.4896
+      top = 0.2389
+      width = 2.0
+      text = {||this.form.inventoryrepdatamodule1.inventory1.rowset.fields["description"].value}
+   endwith
+
+   this.STREAMSOURCE1.detailBand.MYFIELDTEXT3 = new MYFIELDTEXT(this.STREAMSOURCE1.detailBand)
+   with (this.STREAMSOURCE1.detailBand.MYFIELDTEXT3)
+      height = 0.2083
+      left = 4.1042
+      top = 0.2389
+      width = 0.9271
+      text = {||this.form.inventoryrepdatamodule1.inventory1.rowset.fields["qty"].value}
+   endwith
+
+   with (this.printer)
+      duplex = 1	// None
+      orientation = 1	// Portrait
+      paperSource = 15
+      paperSize = 1
+      resolution = 0	// Default
+      color = 2	// Color
+      trueTypeFonts = 3	// Substitute
+   endwith
+
+   with (this.reportGroup.headerBand)
+      height = 0.0
+   endwith
+
+   this.firstPageTemplate = this.form.pagetemplate1
+   this.form.pagetemplate1.nextPageTemplate = this.form.pagetemplate1
+   this.form.pagetemplate1.streamframe1.streamSource = this.form.streamsource1
+   this.form.streamsource1.rowset = this.form.inventoryrepdatamodule1.supplier1.rowset
+
+endclass
+

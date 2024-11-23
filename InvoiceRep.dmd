@@ -1,0 +1,84 @@
+** END HEADER -- do not remove this line
+//
+// Generated on 23/11/2024
+//
+class InvoiceRepDATAMODULE of BASECDATAMODULE from :DT_Custom2:base.cdm
+   with (this.DBASETUTORIAL21)
+      left = 19.0
+      top = 135.0
+      width = 115.0
+      height = 112.0
+   endwith
+
+   this.INVOICE1 = new QUERY(this)
+   with (this.INVOICE1)
+      onOpen = class::INVOICE1_ONOPEN
+      left = 285.0
+      top = 72.0
+      width = 114.0
+      height = 119.0
+      database = form.dbasetutorial21
+      sql = 'Select * from "invoice"'
+      active = true
+   endwith
+
+   with (this.INVOICE1.rowset)
+      indexName = "INVOICE ID"
+   endwith
+
+   this.LINEITEM1 = new QUERY(this)
+   with (this.LINEITEM1)
+      left = 877.0
+      top = 92.0
+      width = 114.0
+      height = 116.0
+      database = form.dbasetutorial21
+      sql = 'Select * from "lineitem"'
+      active = true
+   endwith
+
+   with (this.LINEITEM1.rowset)
+      with (fields["Item ID"])
+         lookupSQL = "select inventory.'item id', description from inventory"
+      endwith
+      indexName = "INVOICE ID"
+      masterRowset = form.invoice1.rowset
+      masterFields = "Invoice ID"
+   endwith
+
+   this.CUSTOMER1 = new QUERY(this)
+   with (this.CUSTOMER1)
+      left = 589.0
+      top = 17.0
+      width = 114.0
+      height = 116.0
+      database = form.dbasetutorial21
+      sql = 'Select * from "customer"'
+      active = true
+   endwith
+
+   with (this.CUSTOMER1.rowset)
+      with (fields["State ID"])
+         lookupSQL = "select * from state order by state"
+      endwith
+      with (fields["Country ID"])
+         lookupSQL = "select * from country"
+      endwith
+      indexName = "CUSTOMER ID"
+      masterRowset = form.invoice1.rowset
+      masterFields = "Customer ID"
+   endwith
+
+   this.rowset = this.invoice1.rowset
+
+   function INVOICE1_onOpen()
+      if type( "_app.InvoiceID" ) # "U" and ;
+			type( "_app.InvoiceID" ) # NULL
+
+			this.rowset.indexName := "Invoice ID"
+			this.rowset.setRange( _app.InvoiceID )
+		endif
+      return
+
+endclass
+

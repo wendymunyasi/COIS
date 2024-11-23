@@ -1,0 +1,412 @@
+//
+// Generated on 24/11/2024
+//
+local r
+r = new CUSTOMERReport()
+r.render()
+
+class CUSTOMERReport of REPORT
+   with (this)
+      autoSort = false
+   endwith
+
+   this.DBASETUTORIAL21 = new DATABASE(this)
+   with (this.DBASETUTORIAL21)
+      width = 360.0
+      height = 360.0
+      databaseName = "DBASETUTORIAL2"
+      active = true
+   endwith
+
+   this.CUSTOMER1 = new QUERY(this)
+   with (this.CUSTOMER1)
+      width = 360.0
+      height = 360.0
+      database = form.form.dbasetutorial21
+      sql = 'select * from customer.dbf ORDER BY  "customer.dbf"."Last Name", "customer.dbf"."First Name"'
+      active = true
+   endwith
+
+   this.PAGETEMPLATE1 = new PAGETEMPLATE(this)
+   with (this.PAGETEMPLATE1)
+      height = 15840.0
+      width = 12240.0
+      marginTop = 720.0
+      marginLeft = 270.0
+      marginBottom = 720.0
+      marginRight = 270.0
+      gridLineWidth = 0
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME1 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME1)
+      height = 1440.0
+      left = 0.0
+      top = 0.0
+      width = 3780.0
+      form.STREAMFRAME1 = form.pagetemplate1.streamframe1
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME2 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME2)
+      height = 1440.0
+      left = 3960.0
+      top = 0.0
+      width = 3780.0
+      form.STREAMFRAME2 = form.pagetemplate1.streamframe2
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME3 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME3)
+      height = 1440.0
+      left = 7920.0
+      top = 0.0
+      width = 3780.0
+      form.STREAMFRAME3 = form.pagetemplate1.streamframe3
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME4 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME4)
+      height = 1440.0
+      left = 0.0
+      top = 1440.0
+      width = 3780.0
+      form.STREAMFRAME4 = form.pagetemplate1.streamframe4
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME5 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME5)
+      height = 1440.0
+      left = 3960.0
+      top = 1440.0
+      width = 3780.0
+      form.STREAMFRAME5 = form.pagetemplate1.streamframe5
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME6 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME6)
+      height = 1440.0
+      left = 7920.0
+      top = 1440.0
+      width = 3780.0
+      form.STREAMFRAME6 = form.pagetemplate1.streamframe6
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME7 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME7)
+      height = 1440.0
+      left = 0.0
+      top = 2880.0
+      width = 3780.0
+      form.STREAMFRAME7 = form.pagetemplate1.streamframe7
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME8 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME8)
+      height = 1440.0
+      left = 3960.0
+      top = 2880.0
+      width = 3780.0
+      form.STREAMFRAME8 = form.pagetemplate1.streamframe8
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME9 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME9)
+      height = 1440.0
+      left = 7920.0
+      top = 2880.0
+      width = 3780.0
+      form.STREAMFRAME9 = form.pagetemplate1.streamframe9
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME10 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME10)
+      height = 1440.0
+      left = 0.0
+      top = 4320.0
+      width = 3780.0
+      form.STREAMFRAME10 = form.pagetemplate1.streamframe10
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME11 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME11)
+      height = 1440.0
+      left = 3960.0
+      top = 4320.0
+      width = 3780.0
+      form.STREAMFRAME11 = form.pagetemplate1.streamframe11
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME12 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME12)
+      height = 1440.0
+      left = 7920.0
+      top = 4320.0
+      width = 3780.0
+      form.STREAMFRAME12 = form.pagetemplate1.streamframe12
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME13 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME13)
+      height = 1440.0
+      left = 0.0
+      top = 5760.0
+      width = 3780.0
+      form.STREAMFRAME13 = form.pagetemplate1.streamframe13
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME14 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME14)
+      height = 1440.0
+      left = 3960.0
+      top = 5760.0
+      width = 3780.0
+      form.STREAMFRAME14 = form.pagetemplate1.streamframe14
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME15 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME15)
+      height = 1440.0
+      left = 7920.0
+      top = 5760.0
+      width = 3780.0
+      form.STREAMFRAME15 = form.pagetemplate1.streamframe15
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME16 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME16)
+      height = 1440.0
+      left = 0.0
+      top = 7200.0
+      width = 3780.0
+      form.STREAMFRAME16 = form.pagetemplate1.streamframe16
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME17 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME17)
+      height = 1440.0
+      left = 3960.0
+      top = 7200.0
+      width = 3780.0
+      form.STREAMFRAME17 = form.pagetemplate1.streamframe17
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME18 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME18)
+      height = 1440.0
+      left = 7920.0
+      top = 7200.0
+      width = 3780.0
+      form.STREAMFRAME18 = form.pagetemplate1.streamframe18
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME19 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME19)
+      height = 1440.0
+      left = 0.0
+      top = 8640.0
+      width = 3780.0
+      form.STREAMFRAME19 = form.pagetemplate1.streamframe19
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME20 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME20)
+      height = 1440.0
+      left = 3960.0
+      top = 8640.0
+      width = 3780.0
+      form.STREAMFRAME20 = form.pagetemplate1.streamframe20
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME21 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME21)
+      height = 1440.0
+      left = 7920.0
+      top = 8640.0
+      width = 3780.0
+      form.STREAMFRAME21 = form.pagetemplate1.streamframe21
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME22 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME22)
+      height = 1440.0
+      left = 0.0
+      top = 10080.0
+      width = 3780.0
+      form.STREAMFRAME22 = form.pagetemplate1.streamframe22
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME23 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME23)
+      height = 1440.0
+      left = 3960.0
+      top = 10080.0
+      width = 3780.0
+      form.STREAMFRAME23 = form.pagetemplate1.streamframe23
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME24 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME24)
+      height = 1440.0
+      left = 7920.0
+      top = 10080.0
+      width = 3780.0
+      form.STREAMFRAME24 = form.pagetemplate1.streamframe24
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME25 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME25)
+      height = 1440.0
+      left = 0.0
+      top = 11520.0
+      width = 3780.0
+      form.STREAMFRAME25 = form.pagetemplate1.streamframe25
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME26 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME26)
+      height = 1440.0
+      left = 3960.0
+      top = 11520.0
+      width = 3780.0
+      form.STREAMFRAME26 = form.pagetemplate1.streamframe26
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME27 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME27)
+      height = 1440.0
+      left = 7920.0
+      top = 11520.0
+      width = 3780.0
+      form.STREAMFRAME27 = form.pagetemplate1.streamframe27
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME28 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME28)
+      height = 1440.0
+      left = 0.0
+      top = 12960.0
+      width = 3780.0
+      form.STREAMFRAME28 = form.pagetemplate1.streamframe28
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME29 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME29)
+      height = 1440.0
+      left = 3960.0
+      top = 12960.0
+      width = 3780.0
+      form.STREAMFRAME29 = form.pagetemplate1.streamframe29
+   endwith
+
+   this.PAGETEMPLATE1.STREAMFRAME30 = new STREAMFRAME(this.PAGETEMPLATE1)
+   with (this.PAGETEMPLATE1.STREAMFRAME30)
+      height = 1440.0
+      left = 7920.0
+      top = 12960.0
+      width = 3780.0
+      form.STREAMFRAME30 = form.pagetemplate1.streamframe30
+   endwith
+
+   this.STREAMSOURCE1 = new STREAMSOURCE(this)
+   this.STREAMSOURCE1.GROUP1 = new GROUP(this.STREAMSOURCE1)
+   with (this.STREAMSOURCE1.GROUP1)
+      groupBy = "Last Name"
+   endwith
+
+   this.STREAMSOURCE1.GROUP2 = new GROUP(this.STREAMSOURCE1)
+   with (this.STREAMSOURCE1.GROUP2)
+      groupBy = "First Name"
+   endwith
+
+   with (this.STREAMSOURCE1.detailBand)
+      expandable = false
+      height = 1440.0
+      beginNewFrame = true
+   endwith
+
+   this.STREAMSOURCE1.detailBand.TEXT1 = new TEXT(this.STREAMSOURCE1.detailBand)
+   with (this.STREAMSOURCE1.detailBand.TEXT1)
+      height = 256.0
+      left = 180.0
+      top = 0.0
+      width = 3600.0
+      prefixEnable = false
+      suppressIfBlank = true
+      text = {||TRIM(this.form.CUSTOMER1.rowset.fields["Last Name"].value) + TRIM(this.form.CUSTOMER1.rowset.fields["First Name"].value)}
+   endwith
+
+   this.STREAMSOURCE1.detailBand.TEXT2 = new TEXT(this.STREAMSOURCE1.detailBand)
+   with (this.STREAMSOURCE1.detailBand.TEXT2)
+      height = 256.0
+      left = 180.0
+      top = 512.0
+      width = 3600.0
+      prefixEnable = false
+      suppressIfBlank = true
+      text = {||TRIM(this.form.CUSTOMER1.rowset.fields["Postal"].value) + TRIM(this.form.CUSTOMER1.rowset.fields["City"].value)}
+   endwith
+
+   this.STREAMSOURCE1.detailBand.TEXT3 = new TEXT(this.STREAMSOURCE1.detailBand)
+   with (this.STREAMSOURCE1.detailBand.TEXT3)
+      height = 256.0
+      left = 180.0
+      top = 768.0
+      width = 3600.0
+      prefixEnable = false
+      suppressIfBlank = true
+      text = {||TRIM(this.form.CUSTOMER1.rowset.fields["State ID"].value) + TRIM(this.form.CUSTOMER1.rowset.fields["Street1"].value) + TRIM(this.form.CUSTOMER1.rowset.fields["Street2"].value)}
+   endwith
+
+   with (this.printer)
+      duplex = 1	// None
+      orientation = 1	// Portrait
+      paperSource = 15
+      paperSize = 1
+      resolution = 0	// Default
+      color = 2	// Color
+      trueTypeFonts = 3	// Substitute
+   endwith
+
+   with (this.reportGroup.footerBand)
+      height = 250.0
+   endwith
+
+   with (this.reportGroup.headerBand)
+      height = 250.0
+   endwith
+
+   this.firstPageTemplate = this.form.pagetemplate1
+   this.form.pagetemplate1.nextPageTemplate = this.form.pagetemplate1
+   this.form.pagetemplate1.streamframe1.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe2.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe3.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe4.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe5.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe6.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe7.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe8.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe9.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe10.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe11.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe12.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe13.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe14.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe15.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe16.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe17.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe18.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe19.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe20.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe21.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe22.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe23.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe24.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe25.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe26.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe27.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe28.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe29.streamSource = this.form.streamsource1
+   this.form.pagetemplate1.streamframe30.streamSource = this.form.streamsource1
+   this.form.streamsource1.rowset = this.form.customer1.rowset
+endclass
